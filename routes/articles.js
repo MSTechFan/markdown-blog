@@ -7,7 +7,7 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    
+
 })
 
 router.post('/', async (req, res) => {
@@ -16,15 +16,12 @@ router.post('/', async (req, res) => {
         description: req.body.description,
         markdown: req.body.markdown
     })
-
     try {
         article = await article.save()
         res.redirect(`/articles/${article.id}`)
     } catch(e) {
         res.render('articles/new', {article: article})
     }
-
-    
 })
 
 
