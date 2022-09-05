@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Article = require('./models/article')
 const {urlencoded} = express
+const methodOverride = require('method-override')
 const app = express()
 const articleRouter = require('./routes/articles')
 
@@ -10,8 +11,8 @@ mongoose.connect("mongodb+srv://MSTechFan:CityBarranquilla2022@cluster0.obgityr.
 })
 
 app.set('view engine', 'ejs')
-
 app.use(urlencoded({extended: false}))
+app.use(methodOverride('_method'))
 
 app.get('/', async (req, res) => {
     const articles = await Article.find().sort({date: "desc"})
